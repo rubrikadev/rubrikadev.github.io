@@ -86,20 +86,12 @@ nav {
 .menu nav ol {
     list-style-position: inside;
 }
-nav > ol > li::after {
-    content: url('img/play.svg');
-    width: 10px;
-    position: absolute;
-    right: 42px;
-    top: 12px;
-}
 .menu nav > ol > li {
     margin-bottom: 20px;
 }
 .menu ol ol {
     padding-left: 25px;
 }
-
 .menu ol ol li {
    padding: 12px 0 12px 12px;
    position: relative;
