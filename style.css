@@ -1,102 +1,191 @@
-:root {
-   --grisclaro: #F2F2F2;
-   --gris: #cecece;
-   --grisoscuro: #A6A6A6;
-   --naranja: #faae00;
-   --rojo: #C9533E;
-   --Opensans: 'Open Sans', sans-serif;
-   --Poppins: 'Poppins', sans-serif;
-   --anchomenu: 275px;
-   --sombra: 1px 1px 5px var(--grisoscuro);
-}
+@charset "UTF-8";
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--Opensans);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  font-size: 100%;
 }
+
 body {
-    padding-left: var(--anchomenu);
-    background-color: var(--gris);
+  padding: 20px calc(18% + 20px) 20px calc(18% + 20px);
+  background-color: #cecece;
 }
+
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--Poppins);
+  font-family: "Poppins", sans-serif;
 }
+
+p, a, h4, h5 {
+  font-size: 0.8rem;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 1.9rem;
+  margin-bottom: 50px;
+  display: inline-block;
+}
+h1::after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 3px;
+  background-color: #faae00;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
 h3 {
-    font-weight: 500;
-    position: relative;
-    display: inline-block;
-    margin-bottom: 50px;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 25px;
 }
 h3::after {
-    content: "";
-    display: block;
-    width: 60%;
-    height: 3px;
-    background-color: var(--naranja);
+  content: "";
+  display: block;
+  width: 60%;
+  height: 3px;
+  background-color: #faae00;
 }
+
+h4, h5 {
+  font-weight: 500;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
 /*Elementos generales*/
-ol {
-    counter-reset: item;
-    list-style: none;
+.btn {
+  display: inline-block;
+  color: #3a3535;
+  background-color: #faae00;
+  padding: 10px 14px;
+  margin-bottom: 20px;
 }
-li:before {
-    counter-increment: item;
-    content: counters(item, ".")"- ";
-}
+
 /*Fin elementos generales*/
 /*Flex*/
 .flex {
-    display: flex;
+  display: flex;
 }
+
 .fdcolumn {
-    flex-direction: column;
+  flex-direction: column;
 }
+
 .jcenter {
-    justify-content: center;
+  justify-content: center;
 }
+
+.jbetween {
+  justify-content: space-between;
+}
+
 .acenter {
-    align-items: center;
+  align-items: center;
 }
+
 .astart {
-    align-items: flex-start;
+  align-items: flex-start;
 }
+
 /*Fin flex*/
 /*Menú*/
 .menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 275px;
-    background-color: var(--grisclaro);
-    box-shadow: var(--sombra);
-    padding: 40px 0px 40px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 18%;
+  background-color: #F2F2F2;
+  box-shadow: 1px 1px 5px #A6A6A6;
+  padding: 40px 0px 40px 30px;
 }
-.logo {
-    display: inline-block;
-    margin-bottom: 100px;
+.menu .logo {
+  display: inline-block;
 }
-.logo svg {
-    width: 80px;
+.menu .logo svg {
+  width: 60px;
+  margin-bottom: 50px;
 }
-nav {
-    width: 100%;
+.menu .indice {
+  counter-reset: section;
+  width: 100%;
 }
-.menu nav ol {
-    list-style-position: inside;
+.menu .indice .apartado {
+  margin-bottom: 20px;
+  counter-reset: subsection;
 }
-.menu nav > ol > li {
-    margin-bottom: 20px;
+.menu .indice .apartado .apartit {
+  position: relative;
+  cursor: pointer;
 }
-.menu ol ol {
-    padding-left: 25px;
+.menu .indice .apartado .apartit::before {
+  counter-increment: section;
+  content: counters(section, ".") "- ";
 }
-.menu ol ol li {
-   padding: 12px 0 12px 12px;
-   position: relative;
+.menu .indice .apartado .apartit i {
+  right: 20px;
+  top: 6px;
+  position: absolute;
+  transform: rotate(0deg);
+  transition: 0.25s;
 }
-.menu ol ol li:hover {
-    background-color: var(--gris);
+.menu .indice .apartado .apartit i.activo {
+  transform: rotate(90deg);
 }
+.menu .indice .apartado .subapartado {
+  display: none;
+}
+.menu .indice .apartado .punto {
+  display: block;
+  list-style: none;
+  padding: 8px 0px 10px 25px;
+  border-left: 1px solid gray;
+}
+.menu .indice .apartado .punto::before {
+  counter-increment: subsection;
+  content: counter(section) "." counters(subsection, ".") "- ";
+}
+
+.indicedcha {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 18%;
+  box-shadow: 1px 1px 5px #A6A6A6;
+  height: 100vh;
+  background-color: #F2F2F2;
+  padding: 40px 0px 40px 30px;
+}
+.indicedcha h5 {
+  margin-bottom: 25px;
+}
+.indicedcha h5 i {
+  margin-right: 10px;
+}
+.indicedcha .indicecont ul {
+  list-style: none;
+}
+
 /*Fin menú*/
+/*Main*/
+main {
+  width: 100%;
+  padding: 30px;
+  background-color: #F2F2F2;
+}
+
+/*Fin main*/
