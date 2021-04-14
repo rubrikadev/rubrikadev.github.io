@@ -1,10 +1,9 @@
-
 $grisclaro: #F2F2F2;
 $gris: #cecece;
 $grisoscuro: #A6A6A6;
 $naranja: #faae00;
 $rojo: #C9533E;
-$negro: #3a3535;
+$negro: #171616;
 $Opensans: 'Open Sans', sans-serif;
 $Poppins: 'Poppins', sans-serif;
 $anchomenu: 18%;
@@ -13,23 +12,34 @@ $marginl: 50px;
 $marginm: 25px;
 $margintxt: 20px;
 $margins: 10px;
-
+$fsizemenu: 0.9rem;
+:root {
+    font-size: 100%;
+}
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: $Opensans;
-    font-size: 100%;
+    color: $negro;
 }
 body {
-    padding: 20px calc(#{$anchomenu} + 20px)  20px calc(#{$anchomenu} + 20px);
+    padding: 30px calc(#{$anchomenu} + 30px)  30px calc(#{$anchomenu} + 30px);
     background-color: $gris;
+    transition-property: padding;
+    transition-duration: 0.5s;
+    &.nopadizq {
+        padding-left: 50px;
+    }
+    &.nopaddcha {
+        padding-right: 50px;
+    }
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: $Poppins;
 }
 p, a, h4, h5 {
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 h1 {
     font-weight: 500;
@@ -46,7 +56,7 @@ h1 {
 }
 h2 {
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: $marginm;
 }
 h3 {
@@ -71,6 +81,7 @@ p {
 a {
     text-decoration: none;
 }
+
 /*Elementos generales*/
 .btn {
     display: inline-block;
@@ -78,6 +89,27 @@ a {
     background-color: $naranja;
     padding: 10px 14px;
     margin-bottom: 20px;
+    border: 2px solid $naranja;
+    &:hover {
+        background-color: transparent;
+    }
+}
+.lista {
+    list-style-position: inside;
+    li {
+        margin-bottom: $margins;
+    }
+}
+.tarjeta {
+    border-left: 5px solid $naranja;
+    padding: $marginm;
+    box-shadow: $sombra;
+    flex: 1;
+    margin-bottom: $marginl;
+    h4 {
+        font-size: 1.2rem;
+        margin-bottom: $marginm;
+    }
 }
 /*Fin elementos generales*/
 /*Flex*/
@@ -101,6 +133,30 @@ a {
 }
 
 /*Fin flex*/
+/*Grid*/
+.fila {
+    margin-bottom: $marginl;
+    &.pad {
+        padding: $marginm;
+        box-shadow: inset $sombra;
+    }
+    &.gut {
+        .columna:not(:last-child), .tarjeta:not(:last-child) {
+            margin-right: $marginm;
+        }
+    }
+    .columna {
+        flex: 1;
+        padding: $marginm;
+        &.ejemplo {
+            height: 300px;
+            background-color: $naranja;
+            border: 1px solid $negro;
+        }
+    }
+}
+
+/*Fin grid*/
 /*Menú*/
 .menu {
     position: fixed;
@@ -110,7 +166,25 @@ a {
     width: $anchomenu;
     background-color: $grisclaro;
     box-shadow: $sombra;
-    padding: 40px 0px 40px 30px;
+    padding: 40px 0px 40px 32px;
+    transition-property: left;
+    transition-duration: 0.5s;
+    &.oculto {
+        left: -18%;
+    }
+    h3 {
+        font-size: calc(#{$fsizemenu} * 1.2);
+    }
+    .togglemenu {
+        background-color: $grisclaro;
+        position: absolute;
+        top: 50%;
+        right: -44px;
+        cursor: pointer;
+        box-shadow: $sombra;
+        padding: 10px 14px;
+        font-size: 1.1rem;
+    }
     .logo {
         display: inline-block;
         // margin-bottom: 100px;
@@ -129,6 +203,7 @@ a {
                 // margin-bottom: $margins;
                 position: relative;
                 cursor: pointer;
+                font-size: $fsizemenu;
                 &::before {
                     counter-increment: section;
                     content: counters(section, ".")"- ";
@@ -152,9 +227,29 @@ a {
                 list-style: none;
                 padding: 8px 0px 10px 25px;
                 border-left: 1px solid gray;
+                font-size: $fsizemenu;
                 &::before {
                     counter-increment: subsection;
                     content: counter(section) "." counters(subsection, ".")"- ";
+                }
+            }
+        }
+    }
+    .util {
+        position: absolute;
+        bottom: 0;
+        div {
+            height: 50px;
+            width: 50px;
+            //box-shadow: $sombra;
+            border: 1px solid $gris;
+            cursor: pointer;
+            &.pequenotoggle{
+                font-size: 0.9rem;
+            }
+            &.grandetoggle {
+                b{
+                    font-size: 1.4rem;
                 }
             }
         }
@@ -168,18 +263,41 @@ a {
     box-shadow: $sombra;
     height: 100vh;
     background-color: $grisclaro;
-    // padding: calc(#{$altoarriba} + 40px) 0px 40px 30px;
-    padding: 40px 0px 40px 30px;
+    padding: 40px 20px 40px 30px;
+    transition-property: right;
+    transition-duration: 0.5s;
+    &.oculto {
+        right: -18%;
+    }
     h5 {
         margin-bottom: $marginm;
+        font-size: calc(#{$fsizemenu} * 1.2);
         i {
             margin-right: $margins;
         }
     }
-    
+    .togglemenu {
+        background-color: $grisclaro;
+        position: absolute;
+        top: 50%;
+        left: -44px;
+        cursor: pointer;
+        box-shadow: $sombra;
+        padding: 10px 14px;
+        font-size: 1.1rem;
+    }
     .indicecont {
-        ul {
-            list-style: none;
+        counter-reset: indice;
+        .punto {
+            font-size: $fsizemenu;
+            font-size: $fsizemenu;
+            padding: 8px 25px 10px 0px;
+            display: block;
+            &::before {
+                counter-increment: indice;
+                content: counters(indice, ".")"- ";
+                display: inline-block;
+            }
         }
     }
 }
@@ -189,5 +307,9 @@ main {
     width: 100%;
     padding: 30px;
     background-color: $grisclaro;
+    box-shadow: $sombra;
+    h2 {
+        margin-top: $marginl;
+    }
 }
 /*Fin main*/

@@ -1,24 +1,35 @@
 @charset "UTF-8";
+:root {
+  font-size: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
-  font-size: 100%;
+  color: #171616;
 }
 
 body {
-  padding: 20px calc(18% + 20px) 20px calc(18% + 20px);
+  padding: 30px calc(18% + 30px) 30px calc(18% + 30px);
   background-color: #cecece;
+  transition-property: padding;
+  transition-duration: 0.5s;
+}
+body.nopadizq {
+  padding-left: 50px;
+}
+body.nopaddcha {
+  padding-right: 50px;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", sans-serif;
-  
 }
 
 p, a, h4, h5 {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 h1 {
@@ -37,7 +48,7 @@ h1::after {
 
 h2 {
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 25px;
 }
 
@@ -70,10 +81,33 @@ a {
 /*Elementos generales*/
 .btn {
   display: inline-block;
-  color: #3a3535;
+  color: #171616;
   background-color: #faae00;
   padding: 10px 14px;
   margin-bottom: 20px;
+  border: 2px solid #faae00;
+}
+.btn:hover {
+  background-color: transparent;
+}
+
+.lista {
+  list-style-position: inside;
+}
+.lista li {
+  margin-bottom: 10px;
+}
+
+.tarjeta {
+  border-left: 5px solid #faae00;
+  padding: 25px;
+  box-shadow: 1px 1px 5px #A6A6A6;
+  flex: 1;
+  margin-bottom: 50px;
+}
+.tarjeta h4 {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
 }
 
 /*Fin elementos generales*/
@@ -103,6 +137,28 @@ a {
 }
 
 /*Fin flex*/
+/*Grid*/
+.fila {
+  margin-bottom: 50px;
+}
+.fila.pad {
+  padding: 25px;
+  box-shadow: inset 1px 1px 5px #A6A6A6;
+}
+.fila.gut .columna:not(:last-child), .fila.gut .tarjeta:not(:last-child) {
+  margin-right: 25px;
+}
+.fila .columna {
+  flex: 1;
+  padding: 25px;
+}
+.fila .columna.ejemplo {
+  height: 300px;
+  background-color: #faae00;
+  border: 1px solid #171616;
+}
+
+/*Fin grid*/
 /*Menú*/
 .menu {
   position: fixed;
@@ -112,7 +168,25 @@ a {
   width: 18%;
   background-color: #F2F2F2;
   box-shadow: 1px 1px 5px #A6A6A6;
-  padding: 40px 0px 40px 30px;
+  padding: 40px 0px 40px 32px;
+  transition-property: left;
+  transition-duration: 0.5s;
+}
+.menu.oculto {
+  left: -18%;
+}
+.menu h3 {
+  font-size: calc(0.9rem * 1.2);
+}
+.menu .togglemenu {
+  background-color: #F2F2F2;
+  position: absolute;
+  top: 50%;
+  right: -44px;
+  cursor: pointer;
+  box-shadow: 1px 1px 5px #A6A6A6;
+  padding: 10px 14px;
+  font-size: 1.1rem;
 }
 .menu .logo {
   display: inline-block;
@@ -132,6 +206,7 @@ a {
 .menu .indice .apartado .apartit {
   position: relative;
   cursor: pointer;
+  font-size: 0.9rem;
 }
 .menu .indice .apartado .apartit::before {
   counter-increment: section;
@@ -155,10 +230,27 @@ a {
   list-style: none;
   padding: 8px 0px 10px 25px;
   border-left: 1px solid gray;
+  font-size: 0.9rem;
 }
 .menu .indice .apartado .punto::before {
   counter-increment: subsection;
   content: counter(section) "." counters(subsection, ".") "- ";
+}
+.menu .util {
+  position: absolute;
+  bottom: 0;
+}
+.menu .util div {
+  height: 50px;
+  width: 50px;
+  border: 1px solid #cecece;
+  cursor: pointer;
+}
+.menu .util div.pequenotoggle {
+  font-size: 0.9rem;
+}
+.menu .util div.grandetoggle b {
+  font-size: 1.4rem;
 }
 
 .indicedcha {
@@ -169,16 +261,43 @@ a {
   box-shadow: 1px 1px 5px #A6A6A6;
   height: 100vh;
   background-color: #F2F2F2;
-  padding: 40px 0px 40px 30px;
+  padding: 40px 20px 40px 30px;
+  transition-property: right;
+  transition-duration: 0.5s;
+}
+.indicedcha.oculto {
+  right: -18%;
 }
 .indicedcha h5 {
   margin-bottom: 25px;
+  font-size: calc(0.9rem * 1.2);
 }
 .indicedcha h5 i {
   margin-right: 10px;
 }
-.indicedcha .indicecont ul {
-  list-style: none;
+.indicedcha .togglemenu {
+  background-color: #F2F2F2;
+  position: absolute;
+  top: 50%;
+  left: -44px;
+  cursor: pointer;
+  box-shadow: 1px 1px 5px #A6A6A6;
+  padding: 10px 14px;
+  font-size: 1.1rem;
+}
+.indicedcha .indicecont {
+  counter-reset: indice;
+}
+.indicedcha .indicecont .punto {
+  font-size: 0.9rem;
+  font-size: 0.9rem;
+  padding: 8px 25px 10px 0px;
+  display: block;
+}
+.indicedcha .indicecont .punto::before {
+  counter-increment: indice;
+  content: counters(indice, ".") "- ";
+  display: inline-block;
 }
 
 /*Fin menú*/
@@ -187,6 +306,10 @@ main {
   width: 100%;
   padding: 30px;
   background-color: #F2F2F2;
+  box-shadow: 1px 1px 5px #A6A6A6;
+}
+main h2 {
+  margin-top: 50px;
 }
 
 /*Fin main*/

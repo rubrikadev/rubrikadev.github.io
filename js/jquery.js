@@ -29,9 +29,25 @@ $(document).ready(function(){
         console.log(titulosArray);
 
         $.each(titulosArray, function(i, val){
-            $(".indicecont ul").append(`<li class="punto"> <a href="#${val.id}" >  ${val.texto} </a> </li> `);
+            $(".indicecont .contlist").append(`<a class="punto" href="#${val.id}" >  ${val.texto} </a>`);
         });
         // $("indice ul").html(titulosArray);
     }
     indice();
+    //Toggle menús
+    $(".menu .togglemenu").click(function(){
+        $(".menu").toggleClass("oculto");
+        $("body").toggleClass("nopadizq");
+    });
+    $(".indicedcha .togglemenu").click(function(){
+        $(".indicedcha ").toggleClass("oculto");
+        $("body").toggleClass("nopaddcha");
+    });
+    //Utilidades
+    $(".grandetoggle").click(function(){
+        $(":root").css("font-size", "115%");
+    });
+    $(".pequenotoggle").click(function(){
+        $(":root").css("font-size", "100%");
+    });
 });
