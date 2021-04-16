@@ -15,13 +15,12 @@ $(document).ready(function(){
     });
 
     let titulos = $("main h2");
-
-
+    let titulosArray = $.makeArray(titulos);
     //menu de la derecha
+
+
     function indice() {
 
-        let titulosArray = $.makeArray(titulos);
-        
         titulosObj= titulosArray.map((data , indice) => {
             data.id="punto"+indice;
             const resultado = { id:"punto"+indice, texto: $(data).html()}
@@ -33,26 +32,32 @@ $(document).ready(function(){
         $.each(titulosObj, function(i, val){
             $(".indicecont .contlist").append(`<a class="punto" href="#${val.id}" >  ${val.texto} </a>`);
         });
-        $(".contlist .punto:first-child").addClass("activo");
+        //$(".contlist .punto:first-child").addClass("activo");
     }
     indice();
     
     $(window).scroll(function(){
         
         //console.log(scroll);
-        titulos.each(function() {
+        titulos.each(function( valor, index ) {
+            let scrolltotal = $(window).scrollTop();
+
             let idtit = $(this).attr("id");
             let titoffset = $(this).offset().top;
             let slidealto = $(this).parent().height();
             let finalslide = titoffset + slidealto;
-            
 
-            if ($(window).scrollTop() >= titoffset && $(window).scrollTop() < finalslide) {
+            if (scrolltotal >= titoffset && scrolltotal < finalslide) {
                 $('.punto[href="#'+ idtit +'"]').addClass("activo");
                 console.log(slidealto);
             }
+            else if ($(this).is("h2:first") && scrolltotal < titoffset ){
+                $('.punto[href="#'+ idtit +'"]').addClass("activo");
+                
+            }
             else {
                 $('.punto[href="#'+  idtit +'"]').removeClass("activo");
+                
             }
            
         });
@@ -68,9 +73,14 @@ $(document).ready(function(){
     });
     //Utilidades
     $(".grandetoggle").click(function(){
-        $(":root").css("font-size", "115%");
+        $(":root").css("font-size", "120%");
     });
     $(".pequenotoggle").click(function(){
         $(":root").css("font-size", "100%");
     });
+
 });
+
+
+
+
