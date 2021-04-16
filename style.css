@@ -294,6 +294,9 @@ a {
   padding: 8px 25px 10px 0px;
   display: block;
 }
+.indicedcha .indicecont .punto.activo {
+  border-left: 2px solid #faae00;
+}
 .indicedcha .indicecont .punto::before {
   counter-increment: indice;
   content: counters(indice, ".") "- ";

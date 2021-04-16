@@ -14,26 +14,49 @@ $(document).ready(function(){
         $(this).siblings(".subapartado").slideToggle("fast");
     });
 
+    let titulos = $("main h2");
+
+
     //menu de la derecha
     function indice() {
-        let titulos = $("main h2");
+
         let titulosArray = $.makeArray(titulos);
-
-        titulosArray = titulosArray.map((data , indice) => {
-
+        
+        titulosObj= titulosArray.map((data , indice) => {
             data.id="punto"+indice;
             const resultado = { id:"punto"+indice, texto: $(data).html()}
             return resultado
         });
 
-        console.log(titulosArray);
+        //console.log(titulosArray);
 
-        $.each(titulosArray, function(i, val){
+        $.each(titulosObj, function(i, val){
             $(".indicecont .contlist").append(`<a class="punto" href="#${val.id}" >  ${val.texto} </a>`);
         });
-        // $("indice ul").html(titulosArray);
+        $(".contlist .punto:first-child").addClass("activo");
     }
     indice();
+    
+    $(window).scroll(function(){
+        
+        //console.log(scroll);
+        titulos.each(function() {
+            let idtit = $(this).attr("id");
+            let titoffset = $(this).offset().top;
+            let slidealto = $(this).parent().height();
+            let finalslide = titoffset + slidealto;
+            
+
+            if ($(window).scrollTop() >= titoffset && $(window).scrollTop() < finalslide) {
+                $('.punto[href="#'+ idtit +'"]').addClass("activo");
+                console.log(slidealto);
+            }
+            else {
+                $('.punto[href="#'+  idtit +'"]').removeClass("activo");
+            }
+           
+        });
+    });
     //Toggle menús
     $(".menu .togglemenu").click(function(){
         $(".menu").toggleClass("oculto");

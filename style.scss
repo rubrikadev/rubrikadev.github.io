@@ -293,6 +293,9 @@ a {
             font-size: $fsizemenu;
             padding: 8px 25px 10px 0px;
             display: block;
+            &.activo {
+                border-left: 2px solid $naranja;
+            }
             &::before {
                 counter-increment: indice;
                 content: counters(indice, ".")"- ";
