@@ -24,7 +24,7 @@ $fsizemenu: 0.9rem;
     color: $negro;
 }
 body {
-    padding: 30px calc(#{$anchomenu} + 30px)  30px calc(#{$anchomenu} + 30px);
+    padding: 30px calc(#{$anchomenu} + 30px)  500px calc(#{$anchomenu} + 30px);
     background-color: $gris;
     transition-property: padding;
     transition-duration: 0.5s;
@@ -106,6 +106,7 @@ a {
     box-shadow: $sombra;
     flex: 1;
     margin-bottom: $marginl;
+    background-color: white;
     h4 {
         font-size: 1.2rem;
         margin-bottom: $marginm;
@@ -139,6 +140,7 @@ a {
     &.pad {
         padding: $marginm;
         box-shadow: inset $sombra;
+        background-color: white;
     }
     &.gut {
         .columna:not(:last-child), .tarjeta:not(:last-child) {
@@ -199,6 +201,9 @@ a {
         .apartado {
             margin-bottom: $margintxt;
             counter-reset: subsection;
+            &:first-child .subapartado {
+                display: block;
+            }
             .apartit {
                 // margin-bottom: $margins;
                 position: relative;
@@ -288,13 +293,15 @@ a {
     }
     .indicecont {
         counter-reset: indice;
+        border-left: 1px solid $gris;
         .punto {
             font-size: $fsizemenu;
             font-size: $fsizemenu;
-            padding: 8px 25px 10px 0px;
+            padding: 12px 15px 12px 10px;
             display: block;
             &.activo {
                 border-left: 2px solid $naranja;
+                box-shadow: $sombra;
             }
             &::before {
                 counter-increment: indice;
@@ -313,6 +320,11 @@ main {
     box-shadow: $sombra;
     h2 {
         margin-top: $marginl;
+    }
+    &#componentes {
+        .tarjeta:hover, .lista:hover, .btn:hover, .fila:hover {
+            cursor: url(img/documents32.png), auto;
+        }
     }
 }
 /*Fin main*/
