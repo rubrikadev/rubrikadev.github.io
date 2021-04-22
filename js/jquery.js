@@ -76,13 +76,15 @@ $(document).ready(function(){
         $(":root").css("font-size", "100%");
     });
     //Copiar elementos
-    $(".tarjeta").click(function(){
-        let copiado = $(this).prop("outerHTML");
-        
-        $("body").append(copiado);
-        $(copiado).val().select();
-        document.execCommand('copy');
-        $(copiado).remove();
+    $("#componentes .tarjeta, #componentes .btn, #componentes .fila").on({
+        click:function(){
+            let copiado = $(this).prop("outerHTML");
+            console.log(copiado);
+            let elemtemp = $("<textarea>").val(copiado).appendTo("body").select();
+            
+            document.execCommand('copy');
+            $(elemtemp).remove();
+        }
     });
     
 });

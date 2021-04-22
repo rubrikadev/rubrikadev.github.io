@@ -72,8 +72,13 @@ h3 {
         background-color:$naranja;
     }
 }
-h4, h5 {
+h4 {
     font-weight: 500;
+}
+h5 {
+    font-weight: 600;
+    margin-bottom: $marginm;
+    font-size: 1.2rem;
 }
 p {
     margin-bottom: 20px;
@@ -137,6 +142,7 @@ a {
 /*Grid*/
 .fila {
     margin-bottom: $marginl;
+    display: flex;
     &.pad {
         padding: $marginm;
         box-shadow: inset $sombra;
@@ -154,6 +160,10 @@ a {
             height: 300px;
             background-color: $naranja;
             border: 1px solid $negro;
+        }
+        &>img {
+            display: block;
+            width: 100%;
         }
     }
 }
