@@ -6,8 +6,8 @@ $(document).ready(function(){
     function ponflecha(){
         $(".apartit").append(icono);
         $(".apartit i").addClass("fas fa-angle-right");
+        $(".apartado:first-child .apartit i").addClass("activo");
     }
-
     ponflecha();
     $(".apartit").click(function(){
         $(this).children(".fas").toggleClass("activo");
@@ -27,37 +27,34 @@ $(document).ready(function(){
             return resultado
         });
 
-        //console.log(titulosArray);
-
         $.each(titulosObj, function(i, val){
             $(".indicecont .contlist").append(`<a class="punto" href="#${val.id}" >  ${val.texto} </a>`);
         });
-        //$(".contlist .punto:first-child").addClass("activo");
+        $(".contlist .punto:first-child").addClass("activo");
     }
     indice();
     
     $(window).scroll(function(){
         
-        //console.log(scroll);
         titulos.each(function( valor, index ) {
-            let scrolltotal = $(window).scrollTop();
+            let scrolltotal = $(window).scrollTop() + 150;
 
             let idtit = $(this).attr("id");
             let titoffset = $(this).offset().top;
             let slidealto = $(this).parent().height();
             let finalslide = titoffset + slidealto;
 
-            if (scrolltotal >= titoffset && scrolltotal < finalslide) {
+            if (scrolltotal >= titoffset && scrolltotal  < finalslide) {
+                $('.punto').removeClass("activo");
                 $('.punto[href="#'+ idtit +'"]').addClass("activo");
-                console.log(slidealto);
             }
             else if ($(this).is("h2:first") && scrolltotal < titoffset ){
+                $('.punto').removeClass("activo");
                 $('.punto[href="#'+ idtit +'"]').addClass("activo");
                 
             }
             else {
-                $('.punto[href="#'+  idtit +'"]').removeClass("activo");
-                
+
             }
            
         });
@@ -78,7 +75,18 @@ $(document).ready(function(){
     $(".pequenotoggle").click(function(){
         $(":root").css("font-size", "100%");
     });
-
+    //Copiar elementos
+    $("#componentes .tarjeta, #componentes .btn, #componentes .fila").on({
+        click:function(){
+            let copiado = $(this).prop("outerHTML");
+            console.log(copiado);
+            let elemtemp = $("<textarea>").val(copiado).appendTo("body").select();
+            
+            document.execCommand('copy');
+            $(elemtemp).remove();
+        }
+    });
+    
 });
 
 

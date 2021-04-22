@@ -12,7 +12,7 @@
 }
 
 body {
-  padding: 30px calc(18% + 30px) 30px calc(18% + 30px);
+  padding: 30px calc(18% + 30px) 500px calc(18% + 30px);
   background-color: #cecece;
   transition-property: padding;
   transition-duration: 0.5s;
@@ -66,8 +66,14 @@ h3::after {
   background-color: #faae00;
 }
 
-h4, h5 {
+h4 {
   font-weight: 500;
+}
+
+h5 {
+  font-weight: 600;
+  margin-bottom: 25px;
+  font-size: 1.2rem;
 }
 
 p {
@@ -104,6 +110,7 @@ a {
   box-shadow: 1px 1px 5px #A6A6A6;
   flex: 1;
   margin-bottom: 50px;
+  background-color: white;
 }
 .tarjeta h4 {
   font-size: 1.2rem;
@@ -140,10 +147,12 @@ a {
 /*Grid*/
 .fila {
   margin-bottom: 50px;
+  display: flex;
 }
 .fila.pad {
   padding: 25px;
   box-shadow: inset 1px 1px 5px #A6A6A6;
+  background-color: white;
 }
 .fila.gut .columna:not(:last-child), .fila.gut .tarjeta:not(:last-child) {
   margin-right: 25px;
@@ -156,6 +165,10 @@ a {
   height: 300px;
   background-color: #faae00;
   border: 1px solid #171616;
+}
+.fila .columna > img {
+  display: block;
+  width: 100%;
 }
 
 /*Fin grid*/
@@ -202,6 +215,9 @@ a {
 .menu .indice .apartado {
   margin-bottom: 20px;
   counter-reset: subsection;
+}
+.menu .indice .apartado:first-child .subapartado {
+  display: block;
 }
 .menu .indice .apartado .apartit {
   position: relative;
@@ -287,15 +303,17 @@ a {
 }
 .indicedcha .indicecont {
   counter-reset: indice;
+  border-left: 1px solid #cecece;
 }
 .indicedcha .indicecont .punto {
   font-size: 0.9rem;
   font-size: 0.9rem;
-  padding: 8px 25px 10px 0px;
+  padding: 12px 15px 12px 10px;
   display: block;
 }
 .indicedcha .indicecont .punto.activo {
   border-left: 2px solid #faae00;
+  box-shadow: 1px 1px 5px #A6A6A6;
 }
 .indicedcha .indicecont .punto::before {
   counter-increment: indice;
@@ -313,6 +331,9 @@ main {
 }
 main h2 {
   margin-top: 50px;
+}
+main#componentes .tarjeta:hover, main#componentes .lista:hover, main#componentes .btn:hover, main#componentes .fila:hover {
+  cursor: url(img/documents32.png), auto;
 }
 
 /*Fin main*/
