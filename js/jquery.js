@@ -59,14 +59,32 @@ $(document).ready(function(){
            
         });
     });
-    //Toggle menús
-    $(".menu .togglemenu").click(function(){
+    function plegarizq(){
         $(".menu").toggleClass("oculto");
         $("body").toggleClass("nopadizq");
-    });
-    $(".indicedcha .togglemenu").click(function(){
+    }
+    function plegardcha() {
         $(".indicedcha ").toggleClass("oculto");
         $("body").toggleClass("nopaddcha");
+    }
+    //Toggle menús
+    $(".menu .togglemenu").click(function(){
+        plegarizq();
+    });
+    $(".indicedcha .togglemenu").click(function(){
+        plegardcha();
+    });
+    $(document).on({
+        keypress:function(event){
+            let tecla = event.keyCode;
+            console.log(tecla);
+            if (event.keyCode == 113) {
+                plegarizq();
+            }
+            else if (event.keyCode == 101) {
+                plegardcha();
+            }
+        }
     });
     //Utilidades
     $(".grandetoggle").click(function(){
@@ -84,8 +102,9 @@ $(document).ready(function(){
             
             document.execCommand('copy');
             $(elemtemp).remove();
-        }
+        },
     });
+    //Shortcuts
     
 });
 
