@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+    let distanciaBottom = 150;
     //menú de la izquierda
     let icono = document.createElement('i');
 
@@ -37,7 +37,7 @@ $(document).ready(function(){
     $(window).scroll(function(){
         
         titulos.each(function( valor, index ) {
-            let scrolltotal = $(window).scrollTop() + 150;
+            let scrolltotal = $(window).scrollTop() + $(distanciaBottom);
 
             let idtit = $(this).attr("id");
             let titoffset = $(this).offset().top;
@@ -59,6 +59,7 @@ $(document).ready(function(){
            
         });
     });
+    //Toggle menús & utilidades
     function plegarizq(){
         $(".menu").toggleClass("oculto");
         $("body").toggleClass("nopadizq");
@@ -67,13 +68,19 @@ $(document).ready(function(){
         $(".indicedcha ").toggleClass("oculto");
         $("body").toggleClass("nopaddcha");
     }
-    //Toggle menús
+    function txtgrande() {
+        $(":root").css("font-size", "120%");
+    }
+    function txtpeq() {
+        $(":root").css("font-size", "100%");
+    }
     $(".menu .togglemenu").click(function(){
         plegarizq();
     });
     $(".indicedcha .togglemenu").click(function(){
         plegardcha();
     });
+    //Shortcuts
     $(document).on({
         keypress:function(event){
             let tecla = event.keyCode;
@@ -84,28 +91,63 @@ $(document).ready(function(){
             else if (event.keyCode == 101) {
                 plegardcha();
             }
+            else if (event.keyCode == 43) {
+                txtgrande();
+            }
+            else if (event.keyCode == 45) {
+                txtpeq();
+            }
         }
     });
     //Utilidades
     $(".grandetoggle").click(function(){
-        $(":root").css("font-size", "120%");
+        txtgrande();
     });
     $(".pequenotoggle").click(function(){
-        $(":root").css("font-size", "100%");
+       txtpeq();
     });
     //Copiar elementos
-    $("#componentes .tarjeta, #componentes .btn, #componentes .fila").on({
-        click:function(){
-            let copiado = $(this).prop("outerHTML");
-            console.log(copiado);
-            let elemtemp = $("<textarea>").val(copiado).appendTo("body").select();
-            
-            document.execCommand('copy');
-            $(elemtemp).remove();
-        },
+    if ($("main").hasClass("componentes")){
+        $(".tarjeta, .btn, .fila, pre").on({
+            click:function(){
+                let copiado = $(this).prop("outerHTML");
+                console.log(copiado);
+                let elemtemp = $("<textarea>").val(copiado).appendTo("body").select();
+                document.execCommand('copy');
+                $(elemtemp).remove();
+            },
+        });
+    }
+    function toggler(){
+
+        let boton = $(".toggle .botonera span");
+        let botonArray = $.makeArray(boton);
+        let slide = $(".toggle .pantalla .fila")
+        let slideArray = $.makeArray(slide);
+
+        //console.log(slideArray);
+        botonObj = botonArray.map((data, indice) => {
+            data.slideorder = indice;
+            const result = {slideorder: indice}
+            return result
+        });
+       boton.each(function(data, index){
+            let orden = $(this).prop("slideorder");
+            console.log(orden);
+            $(this).attr("data-order", "slide"+orden);
+       });
+       slideObj = slideArray.map((data, indice) => {
+        data.id="slide"+indice;
+        const result = {id: "slide"+indice};
+        return result
     });
-    //Shortcuts
-    
+        
+        //console.log(slideObj)
+        // botonesObj = botonesArray.map((data, indice) => {
+           
+        // });
+    }
+    toggler();
 });
 
 
